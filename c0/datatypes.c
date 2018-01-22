@@ -1,17 +1,25 @@
+/* Examples of data types in C */
 #include<stdio.h>
 
 int main() {
-  int x = 59;
-  int y = 0x0A;   /* Hexidecimal literal */
+  int x = 59;            /* Integer literal */
+  int y = 0x0A;          /* Hexidecimal literal */
   int z;
   unsigned int a = -40;  /* What happens here? */
-  char c = 'A';   /* Character literal */
+  char c = 'A';          /* Character literal */
   char k = 66;
   char s[] = "Hello!";   /* String literal */
   float f = 10.0 / 3.0;  /* Float literals */
  
 
-  /* Examples of printf control sequences */
+  /* Examples of printf control sequences 
+     %d - integer
+     %x - hexidecimal
+     %u - unsigned
+     %c - character
+     %f - floating point
+     %s - string
+  */
   printf("x = %d (%x hex)\n", x, x);
   printf("y = %x (%d dec)\n", y, y);
   printf("a = %u (%d int) (%x hex)\n", a, a, a);
@@ -31,6 +39,7 @@ int main() {
   printf("\nHex: 100 - A = %d\n", 100-0xA);
   printf("Char: 100 - A = %d\n", 100-'A');
   for(z=0;z<26;z++) {
+     /* We can add an integer to a character literal */
      printf("%c ", 'A' + z);
   }
   printf("\n");

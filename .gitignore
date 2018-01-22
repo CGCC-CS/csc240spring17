@@ -1,6 +1,7 @@
 # Temp files
 *.tmp
 *~
+*.swp
 
 # Prerequisites
 *.d
