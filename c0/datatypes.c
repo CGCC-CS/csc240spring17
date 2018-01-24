@@ -23,7 +23,7 @@ int main() {
   printf("x = %d (%x hex)\n", x, x);
   printf("y = %x (%d dec)\n", y, y);
   printf("a = %u (%d int) (%x hex)\n", a, a, a);
-  printf("c = %c (%x hex) (%d hex)\n", c, c, c);
+  printf("c = %c (%d int) (%x hex)\n", c, c, c);
   printf("k = %c (%d int) (%x hex)\n", k, k, k);
   printf("f = %f (%.2f formatted)\n", f, f);
   printf("s= %s\n", s);

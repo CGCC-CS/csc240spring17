@@ -22,10 +22,11 @@ int main() {
   printf("\n\n");
 
   for (ii=0;ii<(sizeof(b)/sizeof(double));ii++) {
-    printf("b[%d]=%f\n", ii, b[ii]);
+    printf("b[%d]=%.3f\n", ii, b[ii]);
   }
   printf("\n\n");
 
+  /* This loop intentionally goes one character too far */
   for (ii=0;ii<6;ii++) {
     printf("c[%d]=%c (%d)  d[%d]=%c (%d)\n",
                 ii, c[ii], c[ii], ii, d[ii], d[ii]);
