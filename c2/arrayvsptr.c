@@ -1,66 +1,52 @@
 #include<stdio.h>
 
-int main () {
-
+int main() {
   int arr[] = {1, 2, 3, 4, 5};
   int * ptr;
   int ii;
 
-  ptr = arr;     /* equivalent ptr = &arr[0]; */
+  ptr = arr;  /* equivalent to ptr = &arr[0]; */
 
-  /* array indexing */
-  printf("array indexing:\n  ");
-  for(ii=0;ii<5;ii++) {
+  printf("Array indexing: \n");
+  for (ii=0;ii<5;ii++) {
     printf("%d ", arr[ii]);
   }
-  printf("\n");
+  printf ("\n");
 
-  /* pointer arithmetic */
-  printf("pointer arithmetic:\n  ");
-  for(ii=0;ii<5;ii++) {
+  printf("\nPointer arithmetic: \n");
+  for (ii=0;ii<5;ii++) {
     printf("%d ", *(ptr+ii));
   }
-  printf("\n");
+  printf ("\n");
 
-  /* array indexing with a pointer variable*/
-  printf("array indexing with a pointer variable:\n  ");
-  for(ii=0;ii<5;ii++) {
+  printf("\nArray indexing using a pointer: \n");
+  for (ii=0;ii<5;ii++) {
     printf("%d ", ptr[ii]);
   }
-  printf("\n");
+  printf ("\n");
 
-  /* pointer arithmetic with an array name*/
-  printf("pointer arithmetic with an array name:\n  ");
-  for(ii=0;ii<5;ii++) {
+  printf("\nPointer arithmetic using array name: \n");
+  for (ii=0;ii<5;ii++) {
     printf("%d ", *(arr+ii));
   }
-  printf("\n");
+  printf ("\n");
 
-  printf("Are arrays and pointers the same?\n");
+  printf("\nAre arrays and pointers the same?\n");
   printf("  size of arr=%d\n", sizeof(arr));
   printf("  size of ptr=%d\n", sizeof(ptr));
 
-  /* you can assign a value to a pointer, not an array name */
-  ptr=&ii;
-  /*  arr=&ii; */  /* This doesn't work! */
+  /* you can assign a value to pointer, but not an array name */
+  ptr = &ii;
+  /* arr = &ii; */
 
-  /* incrementing a pointer */
+  printf("\nIncrementing a pointer: \n");
   ptr = arr;
-  printf("incrementing a pointer :\n  ");
-  for(ii=0;ii<5;ii++) {
+  for (ii=0;ii<5;ii++) {
     printf("%d ", *ptr);
-    ptr++;
+    ptr ++;
   }
-  printf("\n");
-
-  printf("incrementing an array - not allowed!:\n  ");
-  /*
-  for(ii=0;ii<5;ii++) {
-    printf("%d ", *arr);
-    arr++;
-  }
-  printf("\n");
-  */
+  printf ("\n");
 
   return 0;
 }
+
