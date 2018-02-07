@@ -1,8 +1,9 @@
 #include <stdio.h>
- 
+
+/* Symbolic constant */ 
 #define LEN 100
  
-int count_spaces(char str[], int len);
+int count_spaces(char[], int);
 
 int main() {
   char str[LEN];
@@ -15,14 +16,16 @@ int main() {
   return 0;
 }
 
-int count_spaces(char str[], int len){
+int count_spaces(char str[], int len) {
   int ii;
   int count = 0;
-  while ((ii < len) && (str[ii] != '\0')) {
-     if (str[ii] == ' ') {
-       count ++;
-     }
-     ii++;
+
+  while ( (ii < len) && (str[ii] != '\0') ) {
+    if (str[ii] == ' ') {
+      count++;
+    }
+    ii++;
   }
+
   return count;
 }

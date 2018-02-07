@@ -6,24 +6,29 @@ int main () {
   char t[] = "Also a string";
 
   printf("\n==== print string ====\n");
-  printf("p: [%p] %p, %s\n", (void *) &p, (void *) p, p);
-  printf("s: [%p] %p, %s\n", (void *) &s, (void *) s, s);
-  printf("t: [%p] %p, %s\n", (void *) &t, (void *) t, t);
+  printf("p [%p]: %p, %s\n", (void *) &p, (void *) p, p);
+  printf("s [%p]: %p, %s\n", (void *) &s, (void *) s, s);
+  printf("t [%p]: %p, %s\n", (void *) &t, (void *) t, t);
 
   printf("\n==== print character ====\n");
-  printf("p: [%p] %c [%d]\n", (void *) &p, *p, *p);
-  printf("s: [%p] %c [%d]\n", (void *) &s, *s, *s);
-  printf("t: [%p] %c [%d]\n", (void *) &t, *t, *t);
+  printf("p [%p]: %c [%d]\n", (void *) &p, *p, *p);
+  printf("s [%p]: %c [%d]\n", (void *) &s, *s, *s);
+  printf("t [%p]: %c [%d]\n", (void *) &t, *t, *t);
 
   printf("\n==== print string+1 ====\n");
-  printf("p: [%p] %p, %s\n", (void *) &p, (void *) p, (p+1));
-  printf("s: [%p] %p, %s\n", (void *) &s, (void *) s, (s+1));
-  printf("t: [%p] %p, %s\n", (void *) &t, (void *) t, (t+1));
+  printf("p : %p, %s\n", (void *) (p+1), p+1);
+  printf("s : %p, %s\n", (void *) (s+1), s+1);
+  printf("t : %p, %s\n", (void *) (t+1), t+1);
 
-  printf("\n==== print character+1 ====\n");
-  printf("p: [%p] %c\n", (void *) &p, *(p+1));
-  printf("s: [%p] %c\n", (void *) &s, *(s+1));
-  printf("t: [%p] %c\n", (void *) &t, *(t+1));
+  printf("\n==== print (*character)+1 ====\n");
+  printf("p : %c [%d]\n", (*p)+1, (*p)+1);
+  printf("s : %c [%d]\n", (*s)+1, (*s)+1);
+  printf("t : %c [%d]\n", (*t)+1, (*t)+1);
+
+  printf("\n==== print *(character+1) ====\n");
+  printf("p : %c [%d]\n", *(p+1), *(p+1));
+  printf("s : %c [%d]\n", *(s+1), *(s+1));
+  printf("t : %c [%d]\n", *(t+1), *(t+1));
 
   printf("\n==== pointer arithmetic vs array indexing ====\n");
   printf("s: [%p] %c\n", (void *) &s, *(s+12));
