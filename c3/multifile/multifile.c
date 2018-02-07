@@ -1,8 +1,8 @@
 #include<stdio.h>
-#include"mystuff.h"
+#include"mystuff.h"  /* Quotes indicates local include file */
 
-/* To compile:
-    gcc -ansi -pedantic -Wall multifile.c mystuff.c
+/* Build with :
+      gcc -ansi -pedantic -Wall multifile.c mystuff.c
 */
 
 int main() {

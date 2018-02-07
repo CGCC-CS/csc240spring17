@@ -21,7 +21,7 @@ int main () {
     strcpy(ptr1, "CSC240"); 
 
     /* use strncpy to copy strings - string gets truncated if too long */
-    strncpy(ptr2, "Summer '15 THIS GETS TRUNCATED", LEN); 
+    strncpy(ptr2, "Spring '18 THIS GETS TRUNCATED", LEN); 
 
     printf("Initial Strings: \n");
     printf("  str1 : %s, length=%u\n", str1, strlen(str1));
