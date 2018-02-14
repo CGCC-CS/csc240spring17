@@ -11,7 +11,7 @@ int main() {
   cin >> count;
 
   cout << "Enter a string: ";
-  cin >> str;   // Only gets characters until the next whitespace
+  cin >> str;   // Only gets characters until the next whitespace!
 
   for(int ii=0;ii<count;ii++) {
     cout << ii << " : " << str << endl;
