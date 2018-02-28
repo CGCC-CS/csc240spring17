@@ -85,13 +85,13 @@ int main () {
     else
         printf ("  %s and %s are the same\n", str1, str2);
 
-    printf("\nCocatenating strings: \n");
+    printf("\nConcatenating strings: \n");
     printf("  Before: str2 : %s\n", str2);
     printf("  Before: ptr1 : %s\n", ptr1);
     strncat(str2, "!!!", 3); /* append 3 characters to end */
     strncat(ptr1, " 2015", 3); /* append 3 characters - will cut off any extras */
     printf("  After: str2 : %s\n", str2);
-    printf("  AFter: ptr1 : %s\n", ptr1);
+    printf("  After: ptr1 : %s\n", ptr1);
 
     free(ptr1);
     free(ptr2);
