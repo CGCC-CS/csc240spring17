@@ -24,13 +24,13 @@ class myClass {
   myClass(const myClass& original) {
     a = new int;
     *a = *(original.a);
-    b = original.b * 10;   // Give it a new object number
+    b = original.b * 10;    // Give it a new object number
     cout << "  Copy Constructor " << b << ": " << *a << " (" << a << ")" << endl;
   }
 
   // Destructor
   ~myClass() {
-    cout << "  Destructor " << b << ": " << *a << " (" << a << ")" << endl; 
+    cout << "  Destructor " << b << ": " << *a << " (" << a << ")" << endl;
     delete a;
     a = nullptr;
   }
@@ -44,27 +44,28 @@ void func(myClass k) {
   cout << "    ++++++++++++ start func ++++++++++++ " << endl;
   cout << "    FUNC: begin declare c3" << endl;
   myClass c3(3);
-  cout << "    FUNC: done declare c3" << endl;
-  cout << "    FUNC: ";
+  cout << "    FUNC: end declare c3" << endl;
+  cout << "    FUNC: *k.a=4" << endl;
   *k.a = 4;
+  cout << "    FUNC: ";
   k.print("k");
   cout << "    FUNC: ";
   c3.print("c3");
-  cout << "    ++++++++++++  end func  ++++++++++++ " << endl;
+  cout << "    +++++++++++++ end func +++++++++++++ " << endl;
 }
 
 int main() {
   cout << "MAIN: start" << endl;
   cout << "MAIN: begin declare c1" << endl;
-  myClass c1(1);
-  cout << "MAIN: done declare c1" << endl;
+  myClass c1(1);           // value semantics
+  cout << "MAIN: end declare c1" << endl;
 
-  cout << "MAIN: begin declare *c2" << endl;
-  myClass *c2;
-  cout << "MAIN: done declare *c2" << endl;
-  cout << "MAIN: begin allocate *c2" << endl;
-  c2 = new myClass(2);
-  cout << "MAIN: done allocate *c2" << endl;
+  cout << "MAIN: begin declare c2" << endl;
+  myClass * c2;
+  cout << "MAIN: end declare c2" << endl;
+  cout << "MAIN: begin allocate c2" << endl;
+  c2 = new myClass(2);    // reference semantics
+  cout << "MAIN: end allocate c2" << endl;
 
   cout << "MAIN: call func(c1)" << endl;
   func(c1);
@@ -78,6 +79,6 @@ int main() {
   c1.print("end of main");
   cout << "MAIN: done print c1 after function call" << endl;
 
-
-  return 0; 
+  cout << "MAIN: exiting" << endl;
+  return 0;
 }
