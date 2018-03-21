@@ -10,34 +10,32 @@
 ; Scheme forms are something you ask Scheme to evaluate
 
 ; Comments start with a semi-colon
-
-; You can ignore an entire S-expression using #;
-; The definition below will be ignored
 #;(define ignore
   (lambda (x)
     (* x 0)))
 
-(newline)  ; Write a new line to output
+(newline)
 
 "Data types"
-"String"      ; string
-'Symbols      ; symbol
-+             ; primitive
-#f            ; boolean
-#t
-#\A           ;char
+"Hello, world"   ; string
+'HelloWorld      ; symbol
++                ; primitive
+#t               ; boolean
+#f               ; boolean
+#\A              ; character
 
 (newline)
-"Number:"
-3             ; integer
-#b101         ; binary
-#x101         ; hexidecimal
-#o101         ; octal
-12.34         ; real
-7/3           ; fractions
+"Numeric data types:"
+3      ; integer
+#b101  ; binary
+#x101  ; hexidecimal
+#o101  ; octal
+12.3   ; real
+7/3    ; fractions
+4+2i   ; imaginary
 
 (newline)
-"Number predicates:"
+"Number predicates"
 (integer? 3)
 (integer? 3.0)
 (real? 3)
@@ -49,6 +47,7 @@
 
 (newline)
 "Math"
+(+ 10 10)
 (* 10 10)
 (+ 1 2)
 (* 3 4)
@@ -57,7 +56,7 @@
 (* (/ (* 7 (- 8 2)) (/ (* 6 3) (* 2 2 3 (/ 1 2)))) 2)
 
 (newline)
-"Define x, y, &z"
+"Define x, y, & z"
 (define x 10)
 (define y 20)
 (define (z) 30)
@@ -69,13 +68,13 @@ z
 (newline)
 "Define a procedure"
 (* 3 x)
-(lambda (x) (* 3 x))  ; unnamed procedure
-((lambda (x) (* 3 x)) 9)
+(lambda (x) (* 3 x))    ; unnamed procedure
+((lambda (x) (* 3 x)) 5)
 ((lambda (x) (* 3 x)) y)
-(define trip        ; define associates a name with an expression
-  (lambda (x)       ; lambda defines a procedure
-    (* 3 x)))       ; this form associates the name "trip" with
-                    ;  the lambda expression
+(define trip       ; define associates a name with an expression
+  (lambda (x)      ; lambda defines a procedure
+    (* 3 x)))      ; this form assoicates the name "trip" with 
+                   ; the lambda expression
 trip
 (trip 9)
 (trip y)
@@ -88,6 +87,7 @@ trip
 (addem x y)
 (addem 3 (addem 4 2))
 
+(newline)
 "function as a parameter"
 (define increment
   (lambda (x)
@@ -97,8 +97,8 @@ trip
 (define do
   (lambda (this that)
     (this that)))
-; the first parameter of "do" is a function
 (do increment 8)
+(do trip 10)
 (do (lambda (x) (* 2 x)) 10)
 ;(do 3 4)
 ;(do addem 4)
@@ -107,14 +107,13 @@ trip
 "Recursion"
 (define fact
   (lambda (n)
-    (if (<= n 1)   ; (if condition evaluate-if-true evaluate-if-false)
+    (if (<= n 1)  ; (if condition evaluate-if-true evaluate-if-false)
         1
         (* n (fact (- n 1))))))
 (fact 10)
 (fact 30)
-;(fact 100)
+(fact 100)
 ;(fact 1000)
-;(fact 10000)
 
 "tail-recursion"
 (define fact-tail
@@ -125,12 +124,12 @@ trip
     (if (<= n 1)
         acc
         (fact-tail-acc (- n 1) (* n acc)))))
-(fact-tail 100)
+(fact-tail 500)
 
 (newline)
 "Lists"
 (list x y z)
-(list 'x 'y 'z)   ; ' means "do not evaluate"
+(list 'x 'y 'z)    ; ' means "do not evaluate"
 '(x y z)
 (quote (x y z))
 (quote z)
@@ -143,35 +142,48 @@ oplist
 
 (newline)
 "quote vs list"
-(+ 1 2)       ; evaluate the form
-'(+ 1 2)      ; do not evaluate
-(list + 1 2)  ; add to list
+(+ 1 2)         ; evaluate the operator + on the operands 1 & 2
+'(+ 1 2)        ; do not evaluate - treat like a list
+(list + 1 2)    ; add +, 1 & 2 to a list
 
 (newline)
 "list operations"
+lst
 (car lst)
 (cdr lst)
 (car (cdr lst))
 (cdr (cdr lst))
 (car (cdr (cdr lst)))
-; shortcuts
+(cdr (cdr (cdr lst)))
+;
+(cadr lst)
 (cddr lst)
 (caddr lst)
-;(car '())
+(cdddr lst)
+;(cdr '())
+(newline)
 (cdr '(1))
 (car '((4 5 6)))
-(cdr (car '((4 5 6))))
+(car (car '((4 5 6))))
+
+(newline)
 "Fun with car & cdr)"
 (define lst3 '((1 2) (3 4 (5 6)) (7 8)))
 lst3
 (cdr lst3)
-(car (cdr (car (cdr lst3)))) ; 4
-(cdr (cdr (car (cdr lst3)))) ; ((5 6))
-(car (cdr (cdr (car (cdr lst3))))) ; (5 6)
-(car (car (cdr (cdr (car (cdr lst3)))))) ; 5
-(cdr (car (cdr (cdr (car (cdr lst3)))))) ; (6)
-(car (cdr (car (cdr (cdr (car (cdr lst3))))))) ; 6
-"Lists of size 1"
+(car (cdr lst3))
+(car (car (cdr lst3)))
+(cdr (car (cdr lst3)))
+(car (cdr (car (cdr lst3))))
+(cdr (cdr (car (cdr lst3))))
+(car (cdr (cdr (car (cdr lst3)))))
+(cdr (cdr (cdr (car (cdr lst3)))))
+(car (car (cdr (cdr (car (cdr lst3))))))
+(cdr (car (cdr (cdr (car (cdr lst3))))))
+(car (cdr (car (cdr (cdr (car (cdr lst3)))))))
+
+(newline)
+"List with size 1"
 (car '(1))
 (cdr '(1))
 
@@ -199,15 +211,8 @@ lst3
 (string->symbol "hello")
 
 (newline)
-"combined car/cdr functions"
-lst2
-(cddddr lst2)
-(cadddr lst2)
-(caddr (cddddr lst2))
-((caddr (cddddr lst2)) 10)
-
-(newline)
 "Cool example"
 oplist
+(car oplist)
 ((car oplist) 1 2 3)
 ((cadr oplist) 24 7)
