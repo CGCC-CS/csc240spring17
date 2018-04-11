@@ -109,20 +109,11 @@ badlst
 "Towers of Hanoi"
 (define hanoi    ; uses side-effects
   (lambda (n source center destination)
-    (if (= n 1)  ; stopping condition
-      (begin  
-         (display "move top disk from ")
-         (display source)
-         (display " to ")
-         (display destination)
-         (newline)
-         )
-      (begin
-          (hanoi (- n 1) source destination center)
-          (hanoi 1 source center destination)
-          (hanoi (- n 1) center source destination)
-          )
-      )))
+    (if (= n 1)  ; stopping conditionkj
+      (list 'Move source destination)
+      (list (hanoi (- n 1) source destination center)
+            (hanoi 1 source center destination)
+            (hanoi (- n 1) center source destination)))))
 (hanoi 3 'red 'yellow 'green)
 
 (newline)
@@ -226,6 +217,6 @@ a
 (multiple-of-2-and-5 17)
 (multiple-of-2-and-5 8)
 
-                  
+
 
 
