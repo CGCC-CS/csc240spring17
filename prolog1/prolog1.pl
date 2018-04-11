@@ -1,17 +1,16 @@
-father(jobal, padme).
+father(ruwee, padme).
 father(anakin, luke).
 father(anakin, leia).
 father(han, ben).
+mother(jobal, padme).
 mother(shmi, anakin).
-mother(ruwee, padme).
 mother(padme, luke).
 mother(padme, leia).
 mother(leia, ben).
 alias(darthvader,anakin).
-alias(luke,lukeskywalker).
+alias(luke,skywalker).
 alias(X,Y) :- alias(Y,X).
 
-same(X,X).
 
 male(luke).
 male(john).
@@ -24,7 +23,7 @@ weather(tempe, fall, hot).
 weather(newyork, summer, warm).
 weather(seattle, summer, cool).
 weather(buenasaires, winter, warm).
-weather(City, Temp) :- weather(City, _Season, Temp).
+weather(City, Temp) :- weather(City, _, Temp).
 
 avg_temp(berlin, 49).
 avg_temp(karlsruhe, 60).
@@ -36,29 +35,30 @@ avg_temp(johannesburg, 55).
 avg_temp(phoenix, 80).
 avg_temp(jerusalem, 61).
 
-avg_temp_celsius(Location, C_temp) :-
-	avg_temp(Location, F_temp),
-	C_temp is round((F_temp - 32) * 5 / 9).
 
+% Caluclate average temperature in Celsius
+avg_temp_celsius(Location, C_temp) :-    % head of rule
+	avg_temp(Location, F_temp),          % get the avg temp of Location
+    C_temp is round((F_temp - 32) * 5 / 9).
 
-baseball(summer).
-baseball(spring).
+baseball_season(spring).
+baseball_season(summer).
 reasonable(warm).
 reasonable(hot).
-play(City) :- weather(City, Season, Temp), 
-	baseball(Season), 
-	reasonable(Temp).
+playball(City) :- weather(City, Season, Temp),
+	baseball_season(Season), reasonable(Temp).
 
+president(washington).
 president(lincoln).
 president(kennedy).
-president(bush).
-president(X) :- member(X,[washington, adams, jefferson]).
+president(X) :- member(X,[washington, adams, jefferson, bush]).
 
-score(spurs, 97).
-score(mavericks, 91).
-won(X) :- score(X, ScoreX), score(_Y, ScoreY), ScoreX > ScoreY.
-beatthespread(X) :- score(X, ScoreX), score(_Y, ScoreY), 
-	AdjScoreX is ScoreX - 6, AdjScoreX >= ScoreY.
+score(suns, 124).
+score(mavericks, 97).
+won(X) :- score(X, ScoreX), score(_, ScoreY), ScoreX > ScoreY.
+beatthespread(X) :- score(X, ScoreX), score(Y, ScoreY),
+		AdjScore is ScoreX + 4, AdjScore >= ScoreY, 
+		X \= Y.      % Do not unify (match) X & Y
 
 happy(bob).
 happy(alice).
@@ -68,29 +68,32 @@ annoying(X) :- talkative(X), happy(X).
 
 % Robot AI
 badguy(darthvader).       % badguy/1
-badguy(darthmaul).
+badguy(darthsidious).
 badguy(kyloren).
 badguy(batman, twoface).  % badguy/2
 badguy(batman, joker).
 badguy(superman, lexluthor).
 fight(X) :- badguy(X).
 fight(X) :- badguy(_, X).
-% poor bob & alice!
+% Poor bob & alice!
 fight(X) :- annoying(X).
 fight(alice).
 
-%write outupt when file is consulted!
-:- badguy(superman, X), write('Superman has defeated '), write(X), nl.
-%:- badguy(wonderwoman, X), write('Superman has defeated '), write(X), nl.
+fight(_).  % Noooooooo!
 
+% write output when a file is consulted!
+:- badguy(superman, X), write('Superman has defeated '), write(X), nl.
+%:- badguy(wonderwoman, X), write('Wonder Woman has defeated '), write(X), nl.
+
+
+same(X,X).
 
 % equation A + B = C
 equation(A, B, C) :- 
-	same(Integer, [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]),
-	member(A, Integer), 
-	member(B, Integer), 
+	same(Integer,[0,1,2,3,4,5,6,7,8,10,11,12,13,14,15,16,17,18,19,20]),
+	member(A, Integer),
+	member(B, Integer),
 	C is A + B.
-
 
 is_integer(0) :- !.
 is_integer(X) :- Y is X - 1, is_integer(Y).
